@@ -1,1 +1,1 @@
-# solid-waddle
+# mern stack project
