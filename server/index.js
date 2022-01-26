@@ -1,12 +1,21 @@
-import express, { response } from "express";
-import bodyParser from "body-parser";
+
 import mongoose from "mongoose";
 import cors from 'cors';
-//import userRoutes from './routes/users.js';
+import userRoutes from './routes/users.js';
+import comments from './routes/comments.js';
+
+import express, { response } from "express";
+
+import allUsers from "./models/fakeUsers.js";
+
+import bodyParser from "body-parser";
+
+
 
 
 
 const app = express();
+
 
 // app.use('/users', userRoutes);
 // app.use(bodyParser.json({
@@ -18,10 +27,14 @@ const app = express();
 //     extended: true
 // }));
 
+console.log(allUsers)
 app.get('/', (req,res) => {
     res.setHeader('Access-Control-Allow-Origin', "*")
-    res.send({name: "Boob Gal", status: "ended suffering"})
+    res.send(allUsers)
+
 })
+
+
 
 app.use(cors());
 
