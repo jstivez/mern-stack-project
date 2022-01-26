@@ -1,42 +1,11 @@
-
 import mongoose from "mongoose";
 import cors from 'cors';
-import userRoutes from './routes/users.js';
-import comments from './routes/comments.js';
-
-import express, { response } from "express";
-
 import allUsers from "./models/fakeUsers.js";
-
-import bodyParser from "body-parser";
-
-
-
-
-
+import express from "express";
+import bodyParser from "body-parser"
+import cuid from "cuid";
+const router = express.Router();
 const app = express();
-
-
-// app.use('/users', userRoutes);
-// app.use(bodyParser.json({
-//     limit: "20mb",
-//     extended: true
-// }));
-// app.use(bodyParser.urlencoded({
-//     limit: "20mb",
-//     extended: true
-// }));
-
-console.log(allUsers)
-app.get('/', (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', "*")
-    res.send(allUsers)
-
-})
-
-
-
-app.use(cors());
 
 const CONNECTION_URL = "mongodb+srv://jon:stivers@cluster0.3n2xo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
@@ -49,4 +18,38 @@ mongoose.connect(CONNECTION_URL, {
     console.log(`connection is running on port: ${PORT}`)
 )).catch((err) => console.log(err.message));
 
-mongoose.connect(CONNECTION_URL).then(()=>{console.log('Connect is working')})
+const connection = mongoose.connect(CONNECTION_URL).then(() => { 
+    console.log('Connect is working');
+})
+const messageTextSchema = new mongoose.Schema({ id: 'string', messageText: 'string' })
+const MessageText = mongoose.model('MessageText', messageTextSchema)
+
+//Here we are configuring express to use body-parser as middle-ware.
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use("/", router);
+app.use("/user-post", router);
+
+const corsOptions ={
+    origin:'*', 
+    optionSuccessStatus:200,
+ }
+
+app.use(cors(corsOptions)) // Use this after the variable declaration
+app.post('/user-post', async (req, res) => {
+    await MessageText.create({ id: cuid() , messageText: req.body?.messageText })
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.send(messageTexts)
+})
+
+console.log(allUsers)
+app.get('/users', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.send(allUsers)
+
+})
+app.get('/posts', async (req, res) => {
+    const messageTexts = await MessageText.find().exec();
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    res.send(messageTexts)
+})
