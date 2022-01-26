@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react"
 
 
+
 export function UserProfile () {
    const [data, setData] = useState()
+
    
    useEffect(()=>{
     fetch("http://localhost:5001")
@@ -18,6 +20,7 @@ export function UserProfile () {
         <div>
             <h2>{data?.users?.name}</h2>
             <h2>{data?.users?.id}</h2>
+
         </div>
     )
 }
