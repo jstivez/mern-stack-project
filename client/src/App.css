@@ -1,0 +1,65 @@
+body{
+    text-align: center;
+    background-color: gray;
+  
+  background-image: url("../public/josephine-bredehoft-KsAo8ouBn8A-unsplash.jpg");
+  background-size: cover;
+
+}
+#notes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+ 
+}
+.form{
+    text-decoration:none;
+    color:#000;
+    background:#ffc;
+    display:block;
+    height:10em;
+    width:10em;
+    padding:1em;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transform: rotate(-6deg);
+    transition: transform .15s linear;
+    margin: 2.5%;
+    
+}
+.form:nth-child(even){
+    text-decoration:none;
+    color:#000;
+    background:rgb(224, 204, 255);
+    display:block;
+    height:10em;
+    width:10em;
+    padding:1em;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transform: rotate(6deg);
+    transition: transform .15s linear;
+    margin: 2.5%;
+
+}
+.form:nth-child(3n+3){
+    text-decoration:none;
+    color:#000;
+    background:rgb(204, 253, 255);
+    display:block;
+    height:10em;
+    width:10em;
+    padding:1em;
+    transform: rotate(0deg);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    transition: transform .15s linear;
+    margin: 2.5%;
+}
+
+
+.form:hover{
+box-shadow:10px 10px 7px rgba(0,0,0,.7);
+transform: scale(1.25);
+position:relative;
+z-index:5;
+}

@@ -6,6 +6,7 @@ import React from "react"
 
 import {UserProfile} from "./components/userProfile"
 import { UserPosts } from './components/posts';
+// import { UserPostsTwo } from './components/postTwo';
 
 
 

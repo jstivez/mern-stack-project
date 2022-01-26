@@ -24,7 +24,6 @@ const connection = mongoose.connect(CONNECTION_URL).then(() => {
 const messageTextSchema = new mongoose.Schema({ id: 'string', messageText: 'string' })
 const MessageText = mongoose.model('MessageText', messageTextSchema)
 
-//Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use("/", router);
@@ -53,3 +52,13 @@ app.get('/posts', async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', "*")
     res.send(messageTexts)
 })
+
+app.delete("/user-post", function(req, res) {
+    MessageText.deleteMany({}, function(err) {
+        if (err) {
+            res.status(500).send({error: "Could not clead database..."});           
+        } else {
+            res.status(200).send({message: "All hasp info was deleted succesfully..."});
+        }
+    });
+});
