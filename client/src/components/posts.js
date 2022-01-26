@@ -5,7 +5,7 @@ import { KnownTypeNamesRule } from "graphql";
 
 function onSubmit(){
     let messageText = document.querySelector("#messageInput").value;
-   
+
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -17,7 +17,7 @@ function onSubmit(){
 }
 
 export function UserPosts () {
-  
+
     return (
         <form>
             <label>Message</label>
@@ -27,4 +27,3 @@ export function UserPosts () {
         </form>
     )
 }
-
