@@ -1,13 +1,21 @@
-import express, { response } from "express";
-import bodyParser from "body-parser";
+
 import mongoose from "mongoose";
 import cors from 'cors';
-import {posts} from './models/posts.js';
-//import userRoutes from './routes/users.js';
+import userRoutes from './routes/users.js';
+import comments from './routes/comments.js';
+
+import express, { response } from "express";
+
+import allUsers from "./models/fakeUsers.js";
+
+import bodyParser from "body-parser";
+
+
 
 
 
 const app = express();
+
 
 // app.use('/users', userRoutes);
 // app.use(bodyParser.json({
@@ -19,15 +27,15 @@ const app = express();
 //     extended: true
 // }));
 
+console.log(allUsers)
 app.get('/', (req,res) => {
     res.setHeader('Access-Control-Allow-Origin', "*")
-    res.send({name: "Boob Gal", status: "ended suffering"})
+    res.send(allUsers)
+
 })
-app.get('/posts', (req,res) => {
-    res.setHeader('Access-Control-Allow-Origin', "*")
-    console.log(posts)
-    res.send(posts)
-})
+
+
+
 app.use(cors());
 
 const CONNECTION_URL = "mongodb+srv://jon:stivers@cluster0.3n2xo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
