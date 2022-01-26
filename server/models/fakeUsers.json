@@ -1,11 +1,11 @@
 [{
     "id": {
-        "id" : "0001"
+        "number" : "0001"
     },
-    "name" : "jon",
+    "name" : "Jon",
     "age" : "25",
-    "location" : "lexington",
-    "height" : "6"
+    "location" : "Lexington",
+    "height" : "5'11 1/2"
 
     
 }]

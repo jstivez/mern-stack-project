@@ -3,12 +3,13 @@ import logo from './logo.svg';
 import './App.css';
 import React from "react"
 
-import {UserProfile} from "./components/userProfile"
+import {Posts} from "./components/posts"
+import { CreatePosts } from './components/CreatePosts';
 
 
 function App() {
   return (
-    <UserProfile/>
+    <><CreatePosts /><Posts /></>
   );
 }
 

@@ -2,6 +2,7 @@ import express, { response } from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from 'cors';
+import {posts} from './models/posts.js';
 //import userRoutes from './routes/users.js';
 
 
@@ -22,7 +23,11 @@ app.get('/', (req,res) => {
     res.setHeader('Access-Control-Allow-Origin', "*")
     res.send({name: "Boob Gal", status: "ended suffering"})
 })
-
+app.get('/posts', (req,res) => {
+    res.setHeader('Access-Control-Allow-Origin', "*")
+    console.log(posts)
+    res.send(posts)
+})
 app.use(cors());
 
 const CONNECTION_URL = "mongodb+srv://jon:stivers@cluster0.3n2xo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
